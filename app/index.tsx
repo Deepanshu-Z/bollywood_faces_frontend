@@ -5,17 +5,22 @@ import {
   SafeAreaInsetsContext,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../global.css';
 import { router } from 'expo-router';
+
+const queryClient = new QueryClient();
 export default function Page() {
   return (
     <SafeAreaView>
-      <View className=" bg-red-500 ">
-        <Text>Hello World</Text>
-        <Text>This is the first page of your app.</Text>
-        <Button title="Go to Signup" onPress={() => router.push('/auth/signup')} />
-        <Button title="Go to Login" onPress={() => router.push('/auth/login')} />
-      </View>
+      <QueryClientProvider client={queryClient}>
+        <View className=" bg-red-500 ">
+          <Text>Hello World</Text>
+          <Text>This is the first page of your app.</Text>
+          <Button title="Go to Signup" onPress={() => router.push('/auth/signup')} />
+          <Button title="Go to Login" onPress={() => router.push('/auth/login')} />
+        </View>
+      </QueryClientProvider>
     </SafeAreaView>
   );
 }
